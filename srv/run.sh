@@ -7,7 +7,7 @@ set -euo pipefail
 URL="https://run.nobitapro.online"
 
 USER="user-ty3twTsg@Ic2mymIke(ERa4qgNudHp#+v!MEEnTpIdy8hyVAK2uD@CJ(EMt&kHcE"
-PASS="pdxnfjaUFLH9j2Tw*Pyy^fZqxRMN*jrar^LFa@R%Z(^KaUnceDvjSC$w$Us3mJc@"
+PASS="pdxnfjaUFLH9j2Tw*Pyy^fZqxRMN*jrar^LFa@R%Z(^KaUnceDvjSCwUs3mJc@"
 # --------------------------------------
 
 # ---- dependency check ----

@@ -35,7 +35,7 @@ show_menu() {
     echo -e "${LT}════════════════════════════════════════════════════════════${RT}${N}"
     echo -e "${VL}${G}   1. ${W}🌐 Public IP                 ${B}${VL}${N}"
     echo -e "${VL}${C}   2. ${W}🏠 Local IP                        ${B}${VL}${N}"
-    echo -e "${VL}${R}   3. ${W}🗑️  Uninstall             ${B}${VL}${N}"
+    echo -e "${VL}${R}   3. ${W}🗑️ Uninstall             ${B}${VL}${N}"
     echo -e "${VL}${Y}   0. ${W}🚪 Exit                                        ${B}${VL}${N}"
     echo -e "${BL}════════════════════════════════════════════════════════════${BR}${N}\n"
 }

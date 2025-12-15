@@ -318,16 +318,16 @@ uninstall_wings() {
         read DROPUSER
         
         if [[ -n "$DROPDB" ]]; then
-            mariadb -e "DROP DATABASE IF EXISTS $DROPDB;" 2>/dev/null
+            mysql -e "DROP DATABASE IF EXISTS $DROPDB;" 2>/dev/null
             echo -e "${VL}${G}✓ Database '$DROPDB' deleted${N}"
         fi
         
         if [[ -n "$DROPUSER" ]]; then
-            mariadb -e "DROP USER IF EXISTS '$DROPUSER'@'127.0.0.1';" 2>/dev/null
+            mysql -e "DROP USER IF EXISTS '$DROPUSER'@'127.0.0.1';" 2>/dev/null
             echo -e "${VL}${G}✓ User '$DROPUSER' deleted${N}"
         fi
         
-        mariadb -e "FLUSH PRIVILEGES;" 2>/dev/null
+        mysql -e "FLUSH PRIVILEGES;" 2>/dev/null
     else
         echo -e "${VL}${Y}✓ Database kept intact${N}"
     fi

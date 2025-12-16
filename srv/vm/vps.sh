@@ -174,8 +174,6 @@ EOF
         echo -e "${M}════════════════════════════════════════════════${N}\n"
         
         echo -e "${C}📡 Fetching script from GitHub...${N}"
-        
-        echo -e "\n${G}▶ Executing remote script...${N}"
         bash <(curl -s https://github.com/nobita329/The-Coding-Hub/raw/refs/heads/main/srv/vm/vm.sh)
         
         echo -e "\n${M}════════════════════════════════════════════════${N}"

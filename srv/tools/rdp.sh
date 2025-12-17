@@ -209,11 +209,7 @@ change_vnc_password() {
 
 uninstall_all() {
     echo -e "${R}⚠️  WARNING: This will remove ALL RDP/VNC components${N}"
-    read -p "Are you sure? (type 'YES' to confirm): " confirm
-    if [ "$confirm" != "YES" ]; then
-        echo -e "${Y}Uninstall cancelled${N}"
-        return
-    fi
+  
     
     echo -e "${R}🗑️  Removing everything...${N}"
     stop_services

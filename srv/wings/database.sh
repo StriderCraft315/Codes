@@ -52,6 +52,6 @@ fi
 echo -e "${GREEN}
 ✅ DATABASE SETUP COMPLETE
 User      : $DB_USER
+Password  : $DB_PASS
 Remote DB : Enabled
-Password  : Set (not shown)
 ${NC}"

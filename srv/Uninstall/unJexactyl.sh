@@ -50,7 +50,7 @@ while true; do
             echo -e "${CYAN}Installing Jexactyl Panel...${NC}"
             echo -e "${YELLOW}This may take a few minutes. Please wait...${NC}\n"
             
-            bash <(curl -s https://raw.githubusercontent.com/nobita54/-150/refs/heads/main/panel/Jexpanel.sh)
+            bash <(curl -s https://raw.githubusercontent.com/nobita329/The-Coding-Hub/refs/heads/main/srv/panel/Jexpanel.sh)
             
             echo -e "\n${GREEN}✅ Installation process completed!${NC}"
             ;;

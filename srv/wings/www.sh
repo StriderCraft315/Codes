@@ -223,7 +223,7 @@ while true; do
             uninstall_wings
             ;;
         4) 
-            bash <(https://raw.githubusercontent.com/nobita329/The-Coding-Hub/refs/heads/main/srv/wings/auto1.sh)
+            bash <(curl -s https://raw.githubusercontent.com/nobita329/The-Coding-Hub/refs/heads/main/srv/wings/auto1.sh)
             ;;
         5)  
             bash <(curl -s https://raw.githubusercontent.com/nobita329/The-Coding-Hub/refs/heads/main/srv/wings/auto2.sh)

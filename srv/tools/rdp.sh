@@ -40,6 +40,17 @@ install_all() {
     # Update system
     apt update && apt upgrade -y
     apt update && apt upgrade -y
+    apt install xrdp -y
+    systemctl enable xrdp
+    systemctl start xrdp
+    adduser xrdp ssl-cert
+
+    echo "🧠 Setting default session..."
+    echo xfce4-session > /etc/skel/.xsession
+    echo xfce4-session > ~/.xsession
+
+    echo "📡 Installing VNC & noVNC..."
+    apt install tigervnc-standalone-server tigervnc-common novnc websockify -y
     apt install xfce4 xfce4-goodies xrdp tigervnc-standalone-server tigervnc-common novnc websockify -y
     systemctl enable xrdp && systemctl start xrdp
     adduser xrdp ssl-cert

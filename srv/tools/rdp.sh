@@ -209,7 +209,40 @@ uninstall_all() {
     # Clean up
     apt autoremove -y
     apt clean
-    
+    echo "🧨 Stopping services..."
+    systemctl stop xrdp || true
+    systemctl stop novnc || true
+    echo "🧹 Removing xRDP..."
+    apt purge -y xrdp
+    rm -rf /etc/xrdp
+    echo "🧹 Removing VNC..."
+    vncserver -kill :1 || true
+    apt purge -y tigervnc-standalone-server tigervnc-common
+    rm -rf ~/.vnc
+
+    echo "🧹 Removing noVNC..."
+    apt purge -y novnc websockify
+    rm -f /etc/systemd/system/novnc.service
+    systemctl daemon-reload
+
+    echo "🧹 Removing Browsers..."
+    apt purge -y \
+      google-chrome-stable \
+      firefox firefox-esr \
+      chromium chromium-browser \
+      brave-browser
+    echo "🧹 Removing browser repos & keys..."
+    rm -f /etc/apt/sources.list.d/google-chrome.list
+    rm -f /etc/apt/sources.list.d/brave-browser-release.list
+    rm -f /usr/share/keyrings/google-chrome.gpg
+    rm -f /usr/share/keyrings/brave-browser-archive-keyring.gpg
+    echo "🧹 Removing Desktop icons..."
+    rm -f ~/Desktop/*.desktop
+    echo "🧹 Autoremove & cleanup..."
+    apt autoremove -y
+    apt autoclean -y
+    echo "✅ DONE!"
+    echo "System cleaned: xRDP • Browsers • VNC • noVNC removed"
     systemctl daemon-reload
     
     echo -e "${G}✅ Uninstall complete${N}"

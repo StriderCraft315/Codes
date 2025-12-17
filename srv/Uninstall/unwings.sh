@@ -36,6 +36,9 @@ show_menu() {
     echo -e "${VL}${G}   1. ${W}🌐 Public IP                 ${B}${VL}${N}"
     echo -e "${VL}${C}   2. ${W}🏠 Local IP                        ${B}${VL}${N}"
     echo -e "${VL}${R}   3. ${W}🗑️ Uninstall             ${B}${VL}${N}"
+    echo -e "${VL}${R}   4. ${W}🗑️ Setup 1             ${B}${VL}${N}"
+    echo -e "${VL}${R}   5. ${W}🗑️ Setup 2            ${B}${VL}${N}"
+    echo -e "${VL}${R}   6. ${W}🗑️ Database             ${B}${VL}${N}"
     echo -e "${VL}${Y}   0. ${W}🚪 Exit                                        ${B}${VL}${N}"
     echo -e "${BL}════════════════════════════════════════════════════════════${BR}${N}\n"
 }

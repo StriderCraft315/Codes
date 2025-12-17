@@ -113,7 +113,6 @@ install_browsers() {
     echo "Installing Google Chrome..."
     wget -q -O /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     apt install -y /tmp/chrome.deb 2>/dev/null || echo "Chrome installation skipped"
-    sed -i 's|^Exec=.*google-chrome-stable.*|Exec=/usr/bin/google-chrome-stable --no-sandbox --disable-dev-shm-usage|g' /usr/share/applications/google-chrome.desktop
 
     # Chromium
     apt install -y chromium chromium-l10n
@@ -130,7 +129,21 @@ install_browsers() {
         apt update
         apt install -y brave-browser
     fi
-    
+
+     sed -i 's|^Exec=.*google-chrome.*|Exec=/usr/bin/google-chrome-stable --no-sandbox --disable-dev-shm-usage|g' ~/Desktop/google-chrome.desktop 2>/dev/null
+     sed -i 's|^Exec=.*brave-browser.*|Exec=/usr/bin/brave-browser-stable --no-sandbox --disable-dev-shm-usage|g' ~/Desktop/brave-browser*.desktop 2>/dev/null
+     sed -i 's|^Exec=.*chromium.*|Exec=/usr/bin/chromium --no-sandbox --disable-dev-shm-usage|g' ~/Desktop/chromium*.desktop 2>/dev/null
+     mkdir -p ~/Desktop
+# Google Chrome
+     cp /usr/share/applications/google-chrome.desktop ~/Desktop/ 2>/dev/null
+# Firefox
+     cp /usr/share/applications/firefox*.desktop ~/Desktop/ 2>/dev/null
+# Chromium (Ubuntu 22 me naam different ho sakta hai)
+     cp /usr/share/applications/chromium*.desktop ~/Desktop/ 2>/dev/null
+# Brave
+     cp /usr/share/applications/brave-browser*.desktop ~/Desktop/ 2>/dev/null
+# Sabko executable banao
+    chmod +x ~/Desktop/*.desktop
     echo -e "${G}✅ Browsers installed${N}"
 }
 

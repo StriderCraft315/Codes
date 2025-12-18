@@ -278,8 +278,8 @@ while true; do
     echo -e "${G}5) ${W}Check Status${N}"
     echo -e "${G}6) ${W}Change VNC Password${N}"
     echo -e "${G}7) ${W}Install Browsers Only${N}"
-    echo -e "${G}7) ${W}User  Only${N}"
-    echo -e "${R}8) ${W}Uninstall Everything${N}"
+    echo -e "${G}8) ${W}User  Only${N}"
+    echo -e "${R}9) ${W}Uninstall Everything${N}"
     echo -e "${R}0) ${W}Exit${N}"
     echo -e "${C}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
     

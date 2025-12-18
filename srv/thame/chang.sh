@@ -82,7 +82,7 @@ while true; do
             echo -e "${GREEN}✨ Nebula auto-install starting…${RESET}"
             cd /var/www/pterodactyl || { echo -e "${RED}Path not found!${RESET}"; sleep 2; continue; }
 
-            wget -q https://github.com/nobita54/thm/raw/refs/heads/main/sc/nebula.blueprint
+            wget -q https://github.com/nobita329/The-Coding-Hub/raw/refs/heads/main/srv/thame/nebula.blueprint
 
             # AUTO ENTER + AUTO YES
             yes "" | blueprint -i nebula
@@ -98,7 +98,7 @@ while true; do
             echo -e "${GREEN}🌈 Euphoria auto-install starting…${RESET}"
             cd /var/www/pterodactyl || { echo -e "${RED}Path not found!${RESET}"; sleep 2; continue; }
 
-            wget -q https://github.com/nobita54/thm/raw/refs/heads/main/sc/euphoriatheme.blueprint
+            wget -q https://github.com/nobita329/The-Coding-Hub/raw/refs/heads/main/srv/thame/euphoriatheme.blueprint
             blueprint -i euphoriatheme
             rm -f euphoriatheme.blueprint
 
@@ -116,15 +116,15 @@ while true; do
             echo -e "${GREEN}🛠 Add Tool auto-install starting…${RESET}"
             cd /var/www/pterodactyl || { echo -e "${RED}Path not found!${RESET}"; sleep 2; continue; }
 
-            wget -q https://github.com/nobita54/thm/raw/refs/heads/main/sc/versionchanger.blueprint
-            wget -q https://github.com/nobita54/thm/raw/refs/heads/main/sc/mcplugins.blueprint
-            wget -q https://github.com/nobita54/thm/raw/refs/heads/main/sc/sagaminecraftplayermanager.blueprint
-
+            wget -q https://github.com/nobita329/The-Coding-Hub/raw/refs/heads/main/srv/thame/versionchanger.blueprint
+            wget -q https://github.com/nobita329/The-Coding-Hub/raw/refs/heads/main/srv/thame/mcplugins.blueprint
+            wget -q https://github.com/nobita329/The-Coding-Hub/raw/refs/heads/main/srv/thame/sagaminecraftplayermanager.blueprint
+            wget -q https://github.com/nobita329/The-Coding-Hub/raw/refs/heads/main/srv/thame/huxregister.blueprint
             blueprint -i versionchanger
             blueprint -i mcplugins
             blueprint -i sagaminecraftplayermanager
-
-            rm -f versionchanger.blueprint mcplugins.blueprint sagaminecraftplayermanager.blueprint
+            blueprint -i huxregister.blueprint
+            rm -f versionchanger.blueprint mcplugins.blueprint sagaminecraftplayermanager.blueprint huxregister.blueprint
 
             echo -e "${GREEN}🧩 Add Tool package installed!${RESET}"
             sleep 2

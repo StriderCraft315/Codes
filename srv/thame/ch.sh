@@ -36,18 +36,14 @@ menu() {
 blueprint1() {
   header
   echo -e "${G}▶ Running BLUEPRINT 1...${N}"
-  cd /var/www/pterodactyl || exit
-  bash blueprint.sh
+  bash <(curl -s https://raw.githubusercontent.com/nobita329/The-Coding-Hub/refs/heads/main/srv/thame/blueprint.sh)
   pause
 }
 
 blueprint2() {
   header
   echo -e "${Y}▶ Running BLUEPRINT 2 (Fresh rebuild)...${N}"
-
-
-  echo -e "${C}• Launching Blueprint again...${N}"
-  bash blueprint.sh
+  bash <(curl -s https://raw.githubusercontent.com/nobita329/The-Coding-Hub/refs/heads/main/srv/thame/blueprint.sh)
   pause
 }
 

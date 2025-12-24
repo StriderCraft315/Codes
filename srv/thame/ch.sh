@@ -26,8 +26,8 @@ pause() {
 menu() {
   header
   echo -e "${C}Choose your destiny:${N}\n"
-  echo -e "${G}1) 🚀 BLUEPRINT 1 (Normal Install / Run)"
-  echo -e "${Y}2) ⚡ BLUEPRINT 2 (Rebuild / Fresh UI)"
+  echo -e "${G}1) 🚀 BLUEPRINT 1"
+  echo -e "${Y}2) ⚡ BLUEPRINT 2"
   echo -e "${R}0) ❌ Exit${N}\n"
   read -rp "👉 Select option: " opt
 }

@@ -20,7 +20,7 @@ case $im in
 2)
   clear
   echo -e "${C_MAIN}Installing CasaOS...${NC}"
-  curl -fsSL https://get.casaos.io | bash
+  bash <(curl -s https://raw.githubusercontent.com/nobita329/The-Coding-Hub/refs/heads/main/srv/External/casaos.sh)
   pause
 ;;
 3)

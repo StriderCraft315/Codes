@@ -152,7 +152,7 @@ case $c in
  4) tools_menu ;;
  5) theme_menu ;;
  6) bash <(curl -s https://raw.githubusercontent.com/nobita329/The-Coding-Hub/refs/heads/main/srv/menu/System1.sh) ;;
- 7) bash <(curl -s https://raw.githubusercontent.com/nobita329/The-Coding-Hub/refs/heads/main/srv/menu/System1.sh) ;;
+ 7) bash <(curl -s https://raw.githubusercontent.com/nobita329/The-Coding-Hub/refs/heads/main/srv/External/INFRA.sh) ;;
  8) echo -e "${GREEN}Exiting — CODING HUB by Nobita${NC}"; exit ;;
  *) echo -e "${RED}Invalid${NC}"; pause ;;
 esac

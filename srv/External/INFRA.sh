@@ -13,9 +13,7 @@ case $im in
 1)
   clear
   echo -e "${C_MAIN}Installing KVM + Cockpit...${NC}"
-  apt update
-  apt install -y cockpit cockpit-machines qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
-  systemctl enable --now cockpit.socket libvirtd
+  https://raw.githubusercontent.com/nobita329/The-Coding-Hub/refs/heads/main/srv/External/Cockpit.sh
   echo -e "${C_SEC}Access: https://SERVER_IP:9090${NC}"
   pause
 ;;

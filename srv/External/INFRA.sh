@@ -20,7 +20,9 @@ infra_menu() {
     echo -e "${CYAN} 1) KVM + Cockpit"
     echo -e " 2) CasaOS"
     echo -e " 3) 1Panel"
-    echo -e " 4) Back${NC}"
+    echo -e " 4) LXC/LXD"
+    echo -e " 5) Docker"
+    echo -e " 6) Back${NC}"
     echo -e "${GRAY}────────────────────────────────────────${NC}"
     read -rp "Select → " im
 
@@ -45,6 +47,18 @@ infra_menu() {
         pause
         ;;
       4)
+        clear
+        echo -e "${CYAN}Installing  LXC/LXD...${NC}"
+        bash <(curl -fsSL https://raw.githubusercontent.com/nobita329/The-Coding-Hub/main/srv/External/lxc.sh)
+        pause
+        ;;
+      5)
+        clear
+        echo -e "${CYAN}Installing  LXC/LXD...${NC}"
+        bash <(curl -fsSL https://raw.githubusercontent.com/nobita329/The-Coding-Hub/main/srv/External/lxc.sh)
+        pause
+        ;;
+      6)
         clear
         exit 0
         ;;

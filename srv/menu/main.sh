@@ -41,14 +41,14 @@ echo -e "${C2}╚██████╗╚██████╔╝█████
 echo -e "${C2} ╚═════╝ ╚═════╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝     ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ${NC}"
 echo
 echo -e "${C3}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "                 ${BOLD}Mode By - Nobita${NC}"
+echo -e "                 ${BOLD}Mode By - Nobita${NC}" ${C2}2026
 echo -e "${C1}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo
 }
 # ===================== PANEL MENU =====================
 panel_menu(){
 while true; do banner
-echo -e "${GREEN}────────────── PANEL MENU ──────────────${NC}"
+echo -e "${C3}────────────── PANEL MENU ──────────────${NC}"
 echo -e "${YELLOW} 1)${WHITE} FeatherPanel"
 echo -e "${YELLOW} 2)${WHITE} Pterodactyl"
 echo -e "${YELLOW} 3)${WHITE} Jexactyl v3"
@@ -60,7 +60,7 @@ echo -e "${YELLOW} 8)${WHITE} CtrlPanel"
 echo -e "${YELLOW} 9)${WHITE} CPanel"
 echo -e "${YELLOW}10)${WHITE} Tools Panel (External)"
 echo -e "${YELLOW}11)${WHITE} Back"
-echo -e "${GREEN}─────────────────────────────────────────${NC}"
+echo -e "${C3}─────────────────────────────────────────${NC}"
 read -p "Select → " p
 
 case $p in

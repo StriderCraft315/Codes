@@ -30,7 +30,7 @@ print_header() {
     clear
     echo "╔══════════════════════════════════════════════════════╗"
     echo "║            LXC/LXD Container Manager                 ║"
-    echo "║            (Auto Image Detection)                    ║"
+    echo "║            Mode BY - Nobita                   ║"
     echo "╚══════════════════════════════════════════════════════╝"
     echo
 }

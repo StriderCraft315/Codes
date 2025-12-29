@@ -1,7 +1,47 @@
 #!/bin/bash
-clear
-read -p "Enter your domain (e.g., panel.example.com): " DOMAIN
+# ==================================================
+# PTERODACTYL PANEL AUTO INSTALLER
+# Clean UI • One Page • Production Ready
+# ==================================================
 
+# ---------------- UI THEME ----------------
+C_RESET="\e[0m"
+C_RED="\e[1;31m"
+C_GREEN="\e[1;32m"
+C_YELLOW="\e[1;33m"
+C_BLUE="\e[1;34m"
+C_PURPLE="\e[1;35m"
+C_CYAN="\e[1;36m"
+C_WHITE="\e[1;37m"
+C_GRAY="\e[1;90m"
+
+line(){ echo -e "${C_GRAY}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${C_RESET}"; }
+step(){ echo -e "${C_BLUE}➜ $1${C_RESET}"; }
+ok(){ echo -e "${C_GREEN}✔ $1${C_RESET}"; }
+warn(){ echo -e "${C_YELLOW}⚠ $1${C_RESET}"; }
+
+banner(){
+clear
+echo -e "${C_CYAN}"
+cat << "EOF"
+██████╗ ███████╗████████╗███████╗██████╗  ██████╗ 
+██╔══██╗██╔════╝╚══██╔══╝██╔════╝██╔══██╗██╔═══██╗
+██████╔╝█████╗     ██║   █████╗  ██████╔╝██║   ██║
+██╔═══╝ ██╔══╝     ██║   ██╔══╝  ██╔══██╗██║   ██║
+██║     ███████╗   ██║   ███████╗██║  ██║╚██████╔╝
+╚═╝     ╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝ ╚═════╝ 
+        PTERODACTYL PANEL INSTALLER
+EOF
+echo -e "${C_RESET}"
+line
+echo -e "${C_GREEN}⚡ Fast • Stable • Production Ready${C_RESET}"
+echo -e "${C_PURPLE}🧠 The Coding Hub — No BS Installer${C_RESET}"
+line
+}
+
+# ---------------- START ----------------
+banner
+read -p "🌐 Enter domain (panel.example.com): " DOMAIN
 
 # --- Dependencies ---
 apt update && apt install -y curl apt-transport-https ca-certificates gnupg unzip git tar sudo lsb-release
@@ -150,27 +190,19 @@ systemctl enable --now pteroq.service
 clear
 # --- Admin User ---
 cd /var/www/pterodactyl
-php artisan p:user:make 
+php artisan p:user:make
 
 sed -i '/^APP_ENVIRONMENT_ONLY=/d' .env
 echo "APP_ENVIRONMENT_ONLY=false" >> .env
 
-# --- Animated Info ---
-echo -e "\n\e[1;32m✔ Pterodactyl Panel Setup Complete!\e[0m"
-echo -ne "\e[1;34mFinalizing installation"
-for i in {1..5}; do
-    echo -n "."
-    sleep 0.5
-done
-echo -e "\n"
-
-echo -e "\e[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m"
-echo -e "\e[1;36m  ✅ Installation Completed Successfully! \e[0m"
-echo -e "\e[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m"
-echo -e "\e[1;32m  🌐 Your Panel URL: \e[1;37mhttps://${DOMAIN}\e[0m"
-echo -e "\e[1;32m  📂 Panel Directory: \e[1;37m/var/www/pterodactyl\e[0m"
-echo -e "\e[1;32m  🛠 Create Admin: \e[1;37mphp artisan p:user:make\e[0m"
-echo -e "\e[1;32m  🔑 DB User: \e[1;37m${DB_USER}\e[0m"
-echo -e "\e[1;32m  🔑 DB Password: \e[1;37m${DB_PASS}\e[0m"
-echo -e "\e[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m"
-echo -e "\e[1;35m  🎉 Enjoy your Pterodactyl Panel! \e[0m"
+# ---------------- DONE ----------------
+line
+echo -e "${C_GREEN}🎉 INSTALLATION COMPLETED SUCCESSFULLY${C_RESET}"
+line
+echo -e "${C_CYAN}🌐 Panel URL    : ${C_WHITE}https://${DOMAIN}${C_RESET}"
+echo -e "${C_CYAN}📂 Path         : ${C_WHITE}/var/www/pterodactyl${C_RESET}"
+echo -e "${C_CYAN}🗄 DB User      : ${C_WHITE}${DB_USER}${C_RESET}"
+echo -e "${C_CYAN}🔑 DB Password  : ${C_WHITE}${DB_PASS}${C_RESET}"
+line
+echo -e "${C_PURPLE}🚀 Panel live. Control the servers.${C_RESET}"
+line

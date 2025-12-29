@@ -35,7 +35,7 @@ EOF
 echo -e "${C_RESET}"
 line
 echo -e "${C_GREEN}⚡ Fast • Stable • Production Ready${C_RESET}"
-echo -e "${C_PURPLE}🧠 The Coding Hub — No BS Installer${C_RESET}"
+echo -e "${C_PURPLE}🧠 The Coding Hub — 2026 Installer${C_RESET}"
 line
 }
 
@@ -190,17 +190,15 @@ systemctl enable --now pteroq.service
 clear
 # --- Admin User ---
 cd /var/www/pterodactyl
-php artisan p:user:make
-
 sed -i '/^APP_ENVIRONMENT_ONLY=/d' .env
 echo "APP_ENVIRONMENT_ONLY=false" >> .env
+php artisan p:user:make
 
 # ---------------- DONE ----------------
 line
 echo -e "${C_GREEN}🎉 INSTALLATION COMPLETED SUCCESSFULLY${C_RESET}"
 line
 echo -e "${C_CYAN}🌐 Panel URL    : ${C_WHITE}https://${DOMAIN}${C_RESET}"
-echo -e "${C_CYAN}📂 Path         : ${C_WHITE}/var/www/pterodactyl${C_RESET}"
 echo -e "${C_CYAN}🗄 DB User      : ${C_WHITE}${DB_USER}${C_RESET}"
 echo -e "${C_CYAN}🔑 DB Password  : ${C_WHITE}${DB_PASS}${C_RESET}"
 line

@@ -55,7 +55,7 @@ infra_menu() {
       5)
         clear
         echo -e "${CYAN}Installing  LXC/LXD...${NC}"
-        bash <(curl -fsSL https://raw.githubusercontent.com/nobita329/The-Coding-Hub/main/srv/External/lxc.sh)
+        bash <(curl -fsSL https://raw.githubusercontent.com/nobita329/The-Coding-Hub/refs/heads/main/srv/External/doc.sh)
         pause
         ;;
       6)

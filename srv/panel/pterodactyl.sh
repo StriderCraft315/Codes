@@ -166,6 +166,7 @@ EOF
 
 ln -s /etc/nginx/sites-available/pterodactyl.conf /etc/nginx/sites-enabled/pterodactyl.conf || true
 nginx -t && systemctl restart nginx
+ok "Nginx online"
 
 # --- Queue Worker ---
 tee /etc/systemd/system/pteroq.service > /dev/null << 'EOF'
@@ -187,7 +188,9 @@ EOF
 systemctl daemon-reload
 systemctl enable --now redis-server
 systemctl enable --now pteroq.service
+ok "Queue running"
 clear
+step "Create admin user"
 # --- Admin User ---
 cd /var/www/pterodactyl
 sed -i '/^APP_ENVIRONMENT_ONLY=/d' .env

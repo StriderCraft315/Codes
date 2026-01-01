@@ -37,7 +37,10 @@ uninstall_panel() {
 
   # SAFE AUTO UNINSTALL (panel only)
   systemctl reload nginx 2>/dev/null || true
-  crontab -l 2>/dev/null | grep -v featherpanel | crontab - || true
+  crontab -l 2>/dev/null \
+| grep -v "/var/www/featherpanel/backend/storage/cron/runner.bash" \
+| grep -v "/var/www/featherpanel/backend/storage/cron/runner.php" \
+| crontab -
   rm -rf /var/www/featherpanel
   rm -f /etc/nginx/sites-enabled/FeatherPanel.conf
   rm -f /etc/nginx/sites-available/FeatherPanel.conf

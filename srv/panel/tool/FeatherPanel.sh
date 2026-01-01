@@ -149,7 +149,7 @@ mariadb -e "FLUSH PRIVILEGES;"
   echo "* * * * * bash /var/www/featherpanel/backend/storage/cron/runner.bash >/dev/null 2>&1"
   echo "* * * * * php  /var/www/featherpanel/backend/storage/cron/runner.php  >/dev/null 2>&1"
 } | crontab -
-
+clear
 # ==============================
 # APP SETUP
 # ==============================
@@ -233,7 +233,7 @@ ln -sf /etc/nginx/sites-available/FeatherPanel.conf /etc/nginx/sites-enabled/Fea
 nginx -t && systemctl restart nginx
 
 chown -R www-data:www-data /var/www/featherpanel/*
-
+clear
 echo "======================================"
 echo " ✅ FEATHERPANEL LIVE"
 echo " 🌐 https://${DOMAIN}"

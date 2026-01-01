@@ -191,7 +191,7 @@ setup_database() {
     
     DB_NAME=mythicaldash
     DB_USER=mythicaldash
-    DB_PASS=mythicaldash
+    DB_PASS=1234
 
     # Start MariaDB if not running
     print_status "Starting MariaDB service..."

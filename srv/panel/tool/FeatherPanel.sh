@@ -1,14 +1,46 @@
 #!/bin/bash
-set -e
+# ==================================================
+# PTERODACTYL PANEL AUTO INSTALLER
+# Clean UI • One Page • Production Ready
+# ==================================================
 
+# ---------------- UI THEME ----------------
+C_RESET="\e[0m"
+C_RED="\e[1;31m"
+C_GREEN="\e[1;32m"
+C_YELLOW="\e[1;33m"
+C_BLUE="\e[1;34m"
+C_PURPLE="\e[1;35m"
+C_CYAN="\e[1;36m"
+C_WHITE="\e[1;37m"
+C_GRAY="\e[1;90m"
 
-# ==============================
-# DOMAIN INPUT
-# ==============================
-echo "======================================"
-read -rp "🌐 Enter domain (panel.example.com): " DOMAIN
-echo "======================================"
+line(){ echo -e "${C_GRAY}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${C_RESET}"; }
+step(){ echo -e "${C_BLUE}➜ $1${C_RESET}"; }
+ok(){ echo -e "${C_GREEN}✔ $1${C_RESET}"; }
+warn(){ echo -e "${C_YELLOW}⚠ $1${C_RESET}"; }
 
+banner(){
+clear
+echo -e "${C_CYAN}"
+cat << "EOF"
+██████╗ ███████╗████████╗███████╗██████╗  ██████╗ 
+██╔══██╗██╔════╝╚══██╔══╝██╔════╝██╔══██╗██╔═══██╗
+██████╔╝█████╗     ██║   █████╗  ██████╔╝██║   ██║
+██╔═══╝ ██╔══╝     ██║   ██╔══╝  ██╔══██╗██║   ██║
+██║     ███████╗   ██║   ███████╗██║  ██║╚██████╔╝
+╚═╝     ╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝ ╚═════╝ 
+        PTERODACTYL PANEL INSTALLER
+EOF
+echo -e "${C_RESET}"
+line
+echo -e "${C_GREEN}⚡ Fast • Stable • Production Ready${C_RESET}"
+echo -e "${C_PURPLE}🧠 The Coding Hub — 2026 Installer${C_RESET}"
+line
+}
+
+# ---------------- START ----------------
+banner
 if [[ -z "$DOMAIN" ]]; then
   echo "❌ Domain required"
   exit 1

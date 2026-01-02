@@ -80,8 +80,39 @@ apt -y install php8.3 php8.3-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,z
 apt install -y php8.3 php8.3-{cli,fpm,common,mysql,mbstring,bcmath,xml,zip,curl,gd,tokenizer,ctype,simplexml,dom} mariadb-server nginx redis-server
 # Start installation
 print_header
+#======================================================================================================================
+mkdir /var/www/paymenter
+cd /var/www/paymenter
+curl -Lo paymenter.tar.gz https://github.com/paymenter/paymenter/releases/latest/download/paymenter.tar.gz
+tar -xzvf paymenter.tar.gz
+chmod -R 755 storage/* bootstrap/cache/
+DB_NAME="paymenter"
+DB_USER="paymenteruser"
+DB_PASS="yourPassword" 
+mysql -e "CREATE USER '${DB_USER}'@'127.0.0.1' IDENTIFIED BY '${DB_PASS}';"
+mysql -e "CREATE DATABASE ${DB_NAME};"
+mysql -e "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'127.0.0.1' WITH GRANT OPTION;"
+mysql -e "FLUSH PRIVILEGES;"
+print_success "Database '${DB_NAME}' created with user '${DB_USER}'"
+print_status "Configuring environment variables..."
+cp -n .env.example .env
+# Replace common keys (only if patterns exist)
+sed -i "s|^APP_URL=.*|APP_URL=https://${DOMAIN}|g" .env || true
+sed -i "s|^DB_DATABASE=.*|DB_DATABASE=${DB_NAME}|g" .env || true
+sed -i "s|^DB_USERNAME=.*|DB_USERNAME=${DB_USER}|g" .env || true
+sed -i "s|^DB_PASSWORD=.*|DB_PASSWORD=${DB_PASS}|g" .env || true
+print_success "Environment configuration completed"
+php artisan key:generate --force
+php artisan storage:link
+php artisan migrate --force --seed
+php artisan db:seed --class=CustomPropertySeeder
 
 
+
+
+
+
+#======================================================================================================================
 
 # --- Variables (customize if needed) ---
 WEB_ROOT="/var/www/paymenter"

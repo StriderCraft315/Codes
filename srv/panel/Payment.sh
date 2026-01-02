@@ -41,19 +41,25 @@ echo -e "${C_RESET}"
 line
 echo -e "${C_GREEN}⚡ Fast • Stable • Production Ready${C_RESET}"
 echo -e "${C_PURPLE}🧠 The Coding Hub — 2026 Installer${C_RESET}"
+echo -e "${CYAN}${BOLD}Domain Configuration:${NC}"
+echo -e "${WHITE}Please enter your domain name for Paymenter${NC}"
 line
 }
 
-# ---------------- START ----------------
-banner
-read -p "🌐 Enter domain (panel.example.com): " DOMAIN
+read -rp "$(echo -e "${YELLOW}➤ Enter domain for Paymenter (e.g. paymenter.example.com): ${NC}")" DOMAIN
+
+if [ -z "$DOMAIN" ]; then
+  print_error "No domain entered. Exiting."
+  exit 1
+fi
+
+echo -e "${GREEN}✓ Domain set to: ${WHITE}${DOMAIN}${NC}"
+echo -e ""
 
 # --- Dependencies ---
 apt update && apt install -y curl apt-transport-https ca-certificates gnupg unzip git tar sudo lsb-release
-
 # Detect OS
 OS=$(lsb_release -is | tr '[:upper:]' '[:lower:]')
-
 if [[ "$OS" == "ubuntu" ]]; then
     echo "✅ Detected Ubuntu. Adding PPA for PHP..."
     apt install -y software-properties-common
@@ -68,35 +74,14 @@ fi
 # Add Redis GPG key and repo
 curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
-
 apt update
-
 # --- Install PHP + extensions ---
+apt -y install php8.3 php8.3-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,zip,intl,redis} mariadb-server nginx tar unzip git redis-server
 apt install -y php8.3 php8.3-{cli,fpm,common,mysql,mbstring,bcmath,xml,zip,curl,gd,tokenizer,ctype,simplexml,dom} mariadb-server nginx redis-server
 # Start installation
 print_header
 
-# --- Preliminary checks ---
-print_status "Running preliminary checks..."
-if [ "$(id -u)" -ne 0 ]; then
-  print_error "This script must be run as root. Exiting."
-  exit 1
-fi
-print_success "Root privileges confirmed"
 
-# --- Ask domain up-front ---
-echo -e ""
-echo -e "${CYAN}${BOLD}Domain Configuration:${NC}"
-echo -e "${WHITE}Please enter your domain name for Paymenter${NC}"
-read -rp "$(echo -e "${YELLOW}➤ Enter domain for Paymenter (e.g. paymenter.example.com): ${NC}")" DOMAIN
-
-if [ -z "$DOMAIN" ]; then
-  print_error "No domain entered. Exiting."
-  exit 1
-fi
-
-echo -e "${GREEN}✓ Domain set to: ${WHITE}${DOMAIN}${NC}"
-echo -e ""
 
 # --- Variables (customize if needed) ---
 WEB_ROOT="/var/www/paymenter"

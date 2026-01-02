@@ -34,51 +34,6 @@ show_menu() {
     printf "╚════════════════════════════════════════════════════════════╝${NC}\n\n"
 }
 
-install_adblocker() {
-    printf "${BLUE}╔════════════════════════════════════════════════════════════╗\n"
-    printf "║${WHITE}               🛡️ SETTING UP AD-BLOCKER                   ${BLUE}║\n"
-    printf "╠════════════════════════════════════════════════════════════╣${NC}\n"
-    
-    echo "📦 Creating ad-blocker directory..."
-    sudo mkdir -p /etc/nginx/adblock
-    
-    echo "⬇️  Downloading ad-blocker list..."
-    sudo wget -q -O /etc/nginx/adblock/adblock.conf https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
-    
-    echo "⚙️  Processing block list..."
-    sudo grep -E '^0\.0\.0\.0' /etc/nginx/adblock/adblock.conf | \
-        awk '{print "deny " $2 ";"}' | \
-        head -1000 > /etc/nginx/adblock/blocked_sites.conf
-    
-    echo "🔧 Configuring nginx..."
-    sudo tee /etc/nginx/conf.d/adblock.conf > /dev/null << 'EOF'
-# Ad-blocker configuration for Paymenter
-geo $block_ads {
-    default 0;
-    include /etc/nginx/adblock/blocked_sites.conf;
-}
-
-map $block_ads $adblock {
-    0 "";
-    1 "Ad blocked by Paymenter Security";
-}
-EOF
-    
-    echo "🔄 Testing nginx configuration..."
-    if sudo nginx -t &>/dev/null; then
-        echo "✅ Configuration test passed"
-        echo "♻️  Reloading nginx..."
-        sudo systemctl reload nginx
-        printf "${GREEN}║                                                              ║\n"
-        printf "║${WHITE}          ✅ AD-BLOCKER SETUP COMPLETE!                  ${GREEN}║\n"
-    else
-        printf "${RED}║                                                              ║\n"
-        printf "║${WHITE}          ❌ NGINX CONFIGURATION ERROR                   ${RED}║\n"
-    fi
-    
-    printf "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}\n"
-}
-
 install_paymenter() {
     printf "${GREEN}╔════════════════════════════════════════════════════════════╗\n"
     printf "║${WHITE}               📥 INSTALLING PAYMENTER                   ${GREEN}║\n"
@@ -86,15 +41,11 @@ install_paymenter() {
     
     echo "🚀 Starting Paymenter installation..."
     echo "⚙️  Setting up ad-blocker first..."
-    
-    # Call ad-blocker setup
-    install_adblocker
-    
     echo "📦 Proceeding with Paymenter installation..."
     echo "⏳ This may take a few minutes..."
     
     # Run the Paymenter install script
-    bash <(curl -s https://raw.githubusercontent.com/nobita54/-150/refs/heads/main/panel/Payment.sh)
+    bash <(curl -s https://raw.githubusercontent.com/nobita329/The-Coding-Hub/refs/heads/main/srv/panel/Payment.sh)
     
     printf "${GREEN}║                                                              ║\n"
     printf "║${WHITE}          ✅ INSTALLATION PROCESS COMPLETE!              ${GREEN}║\n"

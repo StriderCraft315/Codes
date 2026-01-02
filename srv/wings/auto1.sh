@@ -32,33 +32,6 @@ go_back() {
     echo -e "${YELLOW}↩️  Going back to previous step...${NC}"
 }
 
-# Create backup function
-backup_config() {
-    local backup_dir="/etc/pterodactyl/backups"
-    local timestamp=$(date +"%Y%m%d_%H%M%S")
-    local backup_file="${backup_dir}/config_backup_${timestamp}.yml"
-    
-    if [ -f "/etc/pterodactyl/config.yml" ]; then
-        print_status "Creating backup of existing configuration"
-        mkdir -p "$backup_dir"
-        cp /etc/pterodactyl/config.yml "$backup_file"
-        
-        # Keep only last 5 backups
-        ls -t "${backup_dir}/config_backup_*.yml" 2>/dev/null | tail -n +6 | xargs -r rm -f
-        
-        check_success "Backup created: $backup_file"
-        echo -e "${CYAN}  📦 Backup saved to: ${backup_file}${NC}"
-        return 0
-    else
-        echo -e "${YELLOW}⚠️  No existing configuration found to backup${NC}"
-        return 1
-    fi
-}
-
-# Create backup before any changes
-echo -e "${CYAN}Creating backup of current configuration...${NC}"
-backup_config
-
 echo -e ""
 echo -e "${GREEN}┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
 echo -e "${GREEN}┃       📝 WINGS AUTO-CONFIGURATION             ┃${NC}"
@@ -210,17 +183,7 @@ if [[ "$CONFIRM" =~ ^[Bb]ack$ ]]; then
         fi
     done
 elif [[ "$CONFIRM" =~ ^[Nn]$ ]]; then
-    echo -e "${RED}❌ Configuration cancelled. Restoring from backup...${NC}"
-    
-    # Restore from backup
-    local backup_dir="/etc/pterodactyl/backups"
-    local latest_backup=$(ls -t "${backup_dir}/config_backup_*.yml" 2>/dev/null | head -1)
-    
-    if [ -f "$latest_backup" ]; then
-        cp "$latest_backup" /etc/pterodactyl/config.yml
-        echo -e "${GREEN}✅ Configuration restored from backup${NC}"
-    fi
-    
+    echo -e "${RED}❌ Configuration cancelled${NC}"
     echo -e "${YELLOW}Please run the script again with correct details.${NC}"
     exit 1
 fi
@@ -303,7 +266,6 @@ echo -e "${CYAN}  🔍 Check status:  ${GREEN}systemctl status wings${NC}"
 echo -e "${CYAN}  📋 View logs:     ${GREEN}journalctl -u wings -f${NC}"
 echo -e "${CYAN}  🔄 Restart:       ${GREEN}systemctl restart wings${NC}"
 echo -e "${CYAN}  📂 Config edit:   ${GREEN}nano /etc/pterodactyl/config.yml${NC}"
-echo -e "${CYAN}  💾 List backups:  ${GREEN}ls -la /etc/pterodactyl/backups/${NC}"
 
 echo -e ""
 echo -e "${BLUE}┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"

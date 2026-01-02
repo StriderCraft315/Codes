@@ -195,10 +195,10 @@ print_status "Configuring MariaDB database..."
 animate_text "Creating database and user..."
 
 # Create DB user and DB (binds to 127.0.0.1)
-mariadb -e "CREATE USER '${DB_USER}'@'127.0.0.1' IDENTIFIED BY '${DB_PASS}';"
-mariadb -e "CREATE DATABASE ${DB_NAME};"
-mariadb -e "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'127.0.0.1' WITH GRANT OPTION;"
-mariadb -e "FLUSH PRIVILEGES;"
+mysql -e "CREATE USER '${DB_USER}'@'127.0.0.1' IDENTIFIED BY '${DB_PASS}';"
+mysql -e "CREATE DATABASE ${DB_NAME};"
+mysql -e "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'127.0.0.1' WITH GRANT OPTION;"
+mysql -e "FLUSH PRIVILEGES;"
 print_success "Database '${DB_NAME}' created with user '${DB_USER}'"
 
 # --- .env setup ---

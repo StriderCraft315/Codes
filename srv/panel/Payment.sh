@@ -108,9 +108,7 @@ php artisan key:generate --force
 php artisan storage:link
 php artisan migrate --force --seed
 php artisan db:seed --class=CustomPropertySeeder
-apt install -y cron
-systemctl enable --now cron
-(crontab -l 2>/dev/null; echo "* * * * * php /var/www/paymenter/artisan schedule:run >> /dev/null 2>&1") | crontab -
+apt install -y cron && systemctl enable --now cron && (crontab -l 2>/dev/null | grep -v "paymenter/artisan schedule:run"; echo "* * * * * /usr/bin/php /var/www/paymenter/artisan schedule:run >> /dev/null 2>&1") | crontab -
 mkdir -p /etc/certs/paymenter
 cd /etc/certs/paymenter
 openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 \

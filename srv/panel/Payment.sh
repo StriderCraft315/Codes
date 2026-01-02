@@ -80,6 +80,8 @@ apt -y install php8.3 php8.3-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,z
 apt install -y php8.3 php8.3-{cli,fpm,common,mysql,mbstring,bcmath,xml,zip,curl,gd,tokenizer,ctype,simplexml,dom} mariadb-server nginx redis-server
 # Start installation
 print_header
+systemctl start mariadb
+
 #======================================================================================================================
 mkdir /var/www/paymenter
 cd /var/www/paymenter

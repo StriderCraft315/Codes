@@ -109,7 +109,7 @@ COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
 
 # --- Generate Application Key ---
 echo "✅ Generating application key..."
-php artisan key:generate --force
+sed -i "s|^APP_KEY=.*|APP_KEY=$(php -r "echo 'base64:'.base64_encode(random_bytes(32));")|" .env
 
 # --- Run Migrations ---
 php artisan migrate --seed --force

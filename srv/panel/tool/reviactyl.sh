@@ -93,9 +93,7 @@ mariadb -e "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'127.0.0.1' WIT
 mariadb -e "FLUSH PRIVILEGES;"
 
 # --- .env Setup ---
-if [ ! -f ".env.example" ]; then
-    curl -Lo .env.example https://raw.githubusercontent.com/pterodactyl/panel/develop/.env.example
-fi
+
 cp .env.example .env
 sed -i "s|APP_URL=.*|APP_URL=https://${DOMAIN}|g" .env
 sed -i "s|DB_DATABASE=.*|DB_DATABASE=${DB_NAME}|g" .env

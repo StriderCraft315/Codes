@@ -45,7 +45,9 @@ while true; do
     print_option "1" "GitHub / VM" "$G"
     print_option "2" "Tool" "$Y"
     print_option "3" "Run" "$B"
+    print_option "4" "RED HED" "$R"
     print_option "4" "Exit" "$R"
+
     
     echo -e "${M}════════════════════════════════════════════════${N}"
     echo -ne "${W}Select Option → ${N}"

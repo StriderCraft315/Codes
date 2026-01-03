@@ -1,15 +1,27 @@
 #!/bin/bash
 
+# ===== COLORS =====
+RED="\033[1;31m"
+GREEN="\033[1;32m"
+YELLOW="\033[1;33m"
+BLUE="\033[1;34m"
+CYAN="\033[1;36m"
+NC="\033[0m"
+
 while true; do
     clear
-    echo "============================"
-    echo "      Jexactyl Manager      "
-    echo "============================"
-    echo "1) Install / Update Panel"
-    echo "2) Uninstall / Restore Backup"
-    echo "3) Exit"
-    echo "----------------------------"
-    read -p "Select Option [1-3]: " option
+    echo -e "${CYAN}"
+    echo "╔══════════════════════════════════════╗"
+    echo "║        🐲 JEXACTYL MANAGER            ║"
+    echo "╠══════════════════════════════════════╣"
+    echo -e "║ ${GREEN}1)${NC} Install / Update Panel         ║"
+    echo -e "║ ${RED}2)${NC} Uninstall / Restore Backup     ║"
+    echo -e "║ ${YELLOW}3)${NC} Exit                           ║"
+    echo "╠══════════════════════════════════════╣"
+    echo -e "║  Panel Control • Clean • Stable     ║"
+    echo "╚══════════════════════════════════════╝"
+    echo -ne "${BLUE}Select an option → ${NC}"
+    read choice
 
     case $option in
 

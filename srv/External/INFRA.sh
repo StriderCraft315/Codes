@@ -49,6 +49,7 @@ infra_menu() {
       4)
         clear
         echo -e "${CYAN}Installing  LXC/LXD...${NC}"
+        sudo usermod -aG lxd root
         bash <(curl -fsSL https://raw.githubusercontent.com/nobita329/The-Coding-Hub/main/srv/External/lxc.sh)
         pause
         ;;

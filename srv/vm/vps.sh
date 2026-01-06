@@ -191,9 +191,10 @@ EOF
         echo -e "${M}════════════════════════════════════════════════${N}\n"
         
         echo -e "${C}📡 Fetching script from GitHub...${N}"
-        apt update && apt upgrade -y
-        apt install sudo curl wget git -y
-        sudo apt install qemu-system cloud-image-utils wget lsof
+        export DEBIAN_FRONTEND=noninteractive && \
+        apt update -y && \
+        apt upgrade -y && \
+        apt install -y sudo curl wget git qemu-system cloud-image-utils lsof
         bash <(curl -s https://raw.githubusercontent.com/nobita329/The-Coding-Hub/refs/heads/main/srv/vm/dd.sh)
         
         echo -e "\n${M}════════════════════════════════════════════════${N}"

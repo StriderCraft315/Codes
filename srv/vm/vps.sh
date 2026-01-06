@@ -42,7 +42,7 @@ print_status() {
 while true; do
     print_header
     
-    print_option "1" "Tool" "$G"
+    print_option "1" "RDX Tool" "$G"
     print_option "2" "𝗥𝘂𝗻 𝘃𝗺 1 Kvm" "$Y"
     print_option "3" "𝗥𝘂𝗻 𝘃𝗺 2 No Kvm" "$B"
     print_option "4" "Exit" "$R"
@@ -149,10 +149,12 @@ EOF
         echo -e "${M}════════════════════════════════════════════════${N}\n"
         
         echo -e "${C}📡 Fetching script from GitHub...${N}"
-        export DEBIAN_FRONTEND=noninteractive && \
-        apt update -y && \
-        apt upgrade -y && \
-        apt install -y sudo curl wget git qemu-system cloud-image-utils lsof
+        export DEBIAN_FRONTEND=noninteractive; \
+        PKGS="sudo curl wget git qemu-system cloud-image-utils lsof"; \
+        MISS=""; \
+        for p in $PKGS; do dpkg -s $p >/dev/null 2>&1 || MISS="$MISS $p"; done; \
+        [ -z "$MISS" ] && echo "✔ All packages already installed" || (apt update -y && apt install -y $MISS)
+
         bash <(curl -s https://raw.githubusercontent.com/nobita329/The-Coding-Hub/refs/heads/main/srv/vm/vm2.sh)
         
         echo -e "\n${M}════════════════════════════════════════════════${N}"

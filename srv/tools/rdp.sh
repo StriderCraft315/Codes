@@ -158,6 +158,8 @@ install_browsers() {
      sudo sed -i 's|^Exec=.*|Exec=env ELECTRON_OZONE_PLATFORM=x11 XDG_SESSION_TYPE=x11 /usr/bin/discord-canary --no-sandbox|' /usr/share/applications/discord-canary.desktop
      sudo sed -i 's|^Exec=.*|Exec=env ELECTRON_OZONE_PLATFORM=x11 /usr/bin/discord --no-sandbox|' /usr/share/applications/discord.desktop && sudo sed -i 's|^Exec=.*|Exec=env ELECTRON_OZONE_PLATFORM=x11 /usr/bin/discord-canary --no-sandbox|' /usr/share/applications/discord-canary.desktop
      mkdir -p ~/Desktop && for f in discord.desktop discord-canary.desktop microsoft-edge.desktop microsoft-edge-stable.desktop brave-browser.desktop chromium.desktop chromium-browser.desktop firefox.desktop google-chrome.desktop google-chrome-stable.desktop; do [ -f /usr/share/applications/$f ] && cp /usr/share/applications/$f ~/Desktop/; done && chmod +x ~/Desktop/*.desktop && for d in ~/Desktop/*.desktop; do gio set "$d" metadata::trusted true; done && xfdesktop --reload
+     sudo snap install snap-store && mkdir -p ~/Desktop && cp /var/lib/snapd/desktop/applications/snap-store_snap-store.desktop ~/Desktop/ && chmod +x ~/Desktop/snap-store_snap-store.desktop && gio set ~/Desktop/snap-store_snap-store.desktop metadata::trusted true && xfdesktop --reload && snap-store     
+     pkill snap-store || true && snap-store --reset || true && rm -rf ~/snap/snap-store/common/* ~/.cache/snap-store && snap-store &
 
 # Sabko executable banao
     chmod +x ~/Desktop/*.desktop

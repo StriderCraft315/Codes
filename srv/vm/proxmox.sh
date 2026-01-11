@@ -13,6 +13,9 @@ if [ -z "$(hostname -f 2>/dev/null)" ]; then
   echo "proxmox.local" > /etc/hostname
   hostnamectl set-hostname proxmox.local
 fi
+rm -rf /var/lib/apt/lists/*
+rm -rf /etc/apt/trusted.gpg*
+rm -rf /var/lib/apt/lists/* /etc/apt/trusted.gpg* && apt update --allow-releaseinfo-change && apt install -y gnupg ca-certificates curl debian-archive-keyring && curl -fsSL https://ftp-master.debian.org/keys/archive-key-12.asc | gpg --dearmor -o /usr/share/keyrings/debian-archive-keyring.gpg && echo -e "deb [signed-by=/usr/share/keyrings/debian-archive-keyring.gpg] http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware\ndeb [signed-by=/usr/share/keyrings/debian-archive-keyring.gpg] http://deb.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware\ndeb [signed-by=/usr/share/keyrings/debian-archive-keyring.gpg] http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware" > /etc/apt/sources.list && apt update
 
 # 3. Add Proxmox repository
 echo "[2/7] Adding Proxmox repository..."
@@ -56,6 +59,8 @@ systemctl restart pve-cluster
 sleep 5
 pvecm updatecerts --force
 systemctl start pvedaemon pveproxy
+rm -rf /var/lib/apt/lists/*
+rm -rf /etc/apt/trusted.gpg*
 
 
 echo "=== Proxmox SSL + IPv6 Fix Script (Debian 12) ==="

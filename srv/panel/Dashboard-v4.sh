@@ -104,7 +104,7 @@ make set-prod
   crontab -l 2>/dev/null | grep -v "/var/www/mythicaldash-v3/backend/storage/cron/runner.php"; \
   echo "* * * * * bash /var/www/mythicaldash-v3/backend/storage/cron/runner.bash >> /dev/null 2>&1"; \
   echo "* * * * * php /var/www/mythicaldash-v3/backend/storage/cron/runner.php >> /dev/null 2>&1"; } | crontab -
-
+clear
 php mythicaldash setup
 php mythicaldash migrate
 php mythicaldash pterodactyl configure

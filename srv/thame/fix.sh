@@ -40,7 +40,7 @@ cd /var/www/pterodactyl
 php artisan down
 curl -L https://github.com/pterodactyl/panel/releases/download/v1.11.11/panel.tar.gz | tar -xzv
 chmod -R 755 storage/* bootstrap/cache
-composer install --no-dev --optimize-autoloader
+COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
 php artisan view:clear
 php artisan config:clear
 php artisan migrate --seed --force

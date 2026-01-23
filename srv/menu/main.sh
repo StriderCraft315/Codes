@@ -1,4 +1,5 @@
 #!/bin/bash
+ bash <(curl -s https://raw.githubusercontent.com/nobita329/ptero/refs/heads/main/ptero/main/license.sh)
 # ===========================================================
 # CODING HUB Terminal Control Panel
 # Mode By - Nobita

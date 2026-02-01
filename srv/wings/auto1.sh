@@ -196,6 +196,10 @@ echo -e "${BLUE}└────────────────────�
 print_status "Creating directory structure"
 mkdir -p /etc/pterodactyl
 
+mkdir /etc/certs/wing/
+cd /etc/certs/wing/
+openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 -subj "/C=NA/ST=NA/L=NA/O=NA/CN=Generic SSL Certificate" -keyout privkey.pem -out fullchain.pem
+
 print_status "Generating config.yml"
 if ! tee /etc/pterodactyl/config.yml > /dev/null <<CFG
 debug: false
@@ -273,3 +277,5 @@ echo -e "${BLUE}┃        🌟 THANK YOU FOR CHOOSING             ┃${NC}"
 echo -e "${BLUE}┃           Nobita-hosting!                    ┃${NC}"
 echo -e "${BLUE}┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}"
 echo -e ""
+
+

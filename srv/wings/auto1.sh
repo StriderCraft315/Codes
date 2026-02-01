@@ -204,7 +204,7 @@ token_id: ${TOKEN_ID}
 token: ${TOKEN}
 api:
   host: 0.0.0.0
-  port: 8443
+  port: 443
   ssl:
     enabled: true
     cert: /etc/certs/wing/fullchain.pem

@@ -195,6 +195,7 @@ echo -e "${BLUE}└────────────────────�
 
 print_status "Creating directory structure"
 mkdir -p /etc/pterodactyl
+mkdir /etc/certs
 
 mkdir /etc/certs/wing/
 cd /etc/certs/wing/
